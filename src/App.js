@@ -13,7 +13,8 @@ const App = ({ removeFeature, buyItem, car, store, additionalPrice }) => {
     removeFeature(item);
   };
 
-  const purchaseItem = item => {
+  const purchaseItem = (e, item) => {
+    e.preventDefault();
     buyItem(item);
   };
 
@@ -21,10 +22,10 @@ const App = ({ removeFeature, buyItem, car, store, additionalPrice }) => {
     <div className="boxes">
       <div className="box">
         <Header car={car} />
-        <AddedFeatures car={car} />
+        <AddedFeatures car={car} remove={deleteFeature} />
       </div>
       <div className="box">
-        <AdditionalFeatures store={store} />
+        <AdditionalFeatures store={store} add={purchaseItem} />
         <Total car={car} additionalPrice={additionalPrice} />
       </div>
     </div>

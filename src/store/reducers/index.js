@@ -16,12 +16,14 @@ const initialState = {
 };
 
 export const carReducer = (state = initialState, action) => {
+  console.log("car price", state.car.price);
+  console.log("action payloads", action.payload);
   switch (action.type) {
     case "BUY_ITEM":
       return {
         ...state,
-        title: action.payload,
-        editing: !state.editing
+        additionalPrice: state.additionalPrice + action.payload.price,
+        car: { ...state.car, features: [...state.car.features, action.payload] }
       };
     case "REMOVE_FEATURE":
       return {
